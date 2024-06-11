@@ -19,11 +19,11 @@ jobs:
     - name: Cache node modules
       uses: actions/cache@v3
       with:
-        # npm cache files are stored in `~/.npm` on Linux/macOS
         path: |
+          ~/.cargo
           ./target/
           ./Cargo.lock
-        key: ${{ runner.os }}-build-${{ hashFiles('./Cargo.lock') }}
+        key: ${{ runner.os }}-build-cache
 
     - name: Ls
       run: ls
