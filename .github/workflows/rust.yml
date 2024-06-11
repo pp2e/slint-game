@@ -16,6 +16,17 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - name: Ls
+      run: ls
+    - name: Cache node modules
+      uses: actions/cache@v3
+      with:
+        # npm cache files are stored in `~/.npm` on Linux/macOS
+        path: |
+          ./target/
+          ./Cargo.lock
+        key: ${{ runner.os }}-build-${{ hashFiles('./Cargo.lock') }}
+
     - name: Build
       run: cargo build --verbose
     - name: Run tests
