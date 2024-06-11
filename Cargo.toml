@@ -1,7 +1,7 @@
 [package]
-name = "{{project-name}}"
+name = "slint-game"
 version = "0.1.0"
-authors = ["{{authors}}"]
+authors = ["alteveded"]
 edition = "2021"
 build = "build.rs"
 
