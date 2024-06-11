@@ -16,8 +16,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Ls
-      run: ls
     - name: Cache node modules
       uses: actions/cache@v3
       with:
@@ -27,6 +25,8 @@ jobs:
           ./Cargo.lock
         key: ${{ runner.os }}-build-${{ hashFiles('./Cargo.lock') }}
 
+    - name: Ls
+      run: ls
     - name: Build
       run: cargo build --verbose
     - name: Run tests
