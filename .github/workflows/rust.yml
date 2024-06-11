@@ -23,11 +23,22 @@ jobs:
           ~/.cargo
           ./target/
           ./Cargo.lock
-        key: ${{ runner.os }}-build-cache
+        key: ${{ runner.os }}-build-cache-wasm
+
+    - name: Install wasmpack
+      run: cargo install wasm-pack
 
     - name: Ls
       run: ls
+    #- name: Build
+    #  run: cargo build --verbose
+    #- name: Run tests
+    #  run: cargo test --verbose
     - name: Build
-      run: cargo build --verbose
-    - name: Run tests
-      run: cargo test --verbose
+      run: wasm-pack build --release --target web
+    - name: Ls
+      run: ls
+    - name: Ls
+      run: ls *
+    - name: Ls
+      run: ls */*
