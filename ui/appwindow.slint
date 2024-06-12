@@ -1,17 +1,39 @@
-import { Button, VerticalBox } from "std-widgets.slint";
+import { Button, VerticalBox, HorizontalBox, AboutSlint, TextEdit } from "std-widgets.slint";
 
 export component AppWindow inherits Window {
     in-out property<int> counter: 42;
+    in property<component-factory> factory;
     callback request-increase-value();
+    callback compile-ui(string);
+
     VerticalBox {
-        Text {
-            text: "Counter: \{root.counter}";
-        }
-        Button {
-            text: "Increase value";
-            clicked => {
-                root.request-increase-value();
+        padding: 0;
+        spacing: 0;
+        HorizontalBox {
+            padding: 0;
+            padding-left: (button.min-height - title.min-height)/2;
+
+            title := Text {
+                vertical-alignment: center;
+                text: "Runned: \{root.counter}";
             }
+            button := Button {
+                text: "Run";
+                width: self.min-width;
+                height: self.min-height;
+                clicked => {
+                    counter += 1;
+                    root.request-increase-value();
+                    compile-ui(textEdit.text);
+                }
+            }
+        }
+        textEdit := TextEdit {
+            text: "export component Example {\n  Rectangle {\n    background: blue;\n    Rectangle {\n      width: 50%;\n      height: 50%;\n      background: red;\n      Text {\n        text: \"50%\";\n      }\n    }\n  }\n}";
+        }
+        ComponentContainer {
+        	min-height: 50px;
+            component-factory <=> root.factory;
         }
     }
 }
