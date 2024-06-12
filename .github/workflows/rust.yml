@@ -29,8 +29,10 @@ jobs:
       run: cargo install wasm-pack
 
     - name: Build
-      run: wasm-pack build --release --target web
-      
+      run: |
+        wasm-pack build --release --target web
+        cp index.html pkg/
+
       
     - name: Setup Pages
       uses: actions/configure-pages@v5
@@ -39,7 +41,6 @@ jobs:
       with:
         path: |
           ./pkg/
-          ./index.html
 
     - name: Deploy to GitHub Pages
       id: deployment
