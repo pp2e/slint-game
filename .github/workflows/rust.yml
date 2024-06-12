@@ -41,7 +41,10 @@ jobs:
     
     steps:
     - name: pwd
-      run: pwd
+      run: |
+        pwd
+        ls
+        ls ..
     - name: Setup Pages
       uses: actions/configure-pages@v5
     - name: Upload artifact
