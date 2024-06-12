@@ -1,5 +1,10 @@
 name: Rust
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 on:
   push:
     branches: [ "main" ]
@@ -12,10 +17,7 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{steps.deployment.outputs.page_url}}
-
+    
     steps:
     - uses: actions/checkout@v4
     - name: Cache node modules
