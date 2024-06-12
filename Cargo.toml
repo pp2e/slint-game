@@ -17,7 +17,6 @@ slint-interpreter = { version = "1.6", features = ["internal"] }
 #Hehehe slint creators im sorry
 i-slint-core = "1.6"
 spin_on = "0.1.1"
-tokio = { version = "1.38.0", features = ["full"] }
 
 [build-dependencies]
 slint-build = "1.6"
