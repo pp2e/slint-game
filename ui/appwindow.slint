@@ -1,4 +1,4 @@
-import { Button, VerticalBox, HorizontalBox, AboutSlint, TextEdit } from "std-widgets.slint";
+import { Button, TextEdit } from "std-widgets.slint";
 
 export component AppWindow inherits Window {
     in-out property<int> counter: 42;
@@ -6,11 +6,8 @@ export component AppWindow inherits Window {
     callback request-increase-value();
     callback compile-ui(string);
 
-    VerticalBox {
-        padding: 0;
-        spacing: 0;
-        HorizontalBox {
-            padding: 0;
+	VerticalLayout {
+        HorizontalLayout {
             padding-left: (button.min-height - title.min-height)/2;
 
             title := Text {
@@ -29,10 +26,12 @@ export component AppWindow inherits Window {
             }
         }
         textEdit := TextEdit {
+        	preferred-width: 500px;
+        	preferred-height: 500px;
             text: "export component Example {\n  Rectangle {\n    background: blue;\n    Rectangle {\n      width: 50%;\n      height: 50%;\n      background: red;\n      Text {\n        text: \"50%\";\n      }\n    }\n  }\n}";
         }
         ComponentContainer {
-        	min-height: 50px;
+        	min-height: 100px;
             component-factory <=> root.factory;
         }
     }

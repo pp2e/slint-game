@@ -2,19 +2,27 @@
 <html>
   <head>
     <style>
+      body {
+      	margin: 0px;
+      }
       #canvas {
-        width: 100%;
-        height: 100%;
+        width: 100vw!important;
+        height: 100vh!important;
       }
     </style>
   </head>
   <body>
+  	<center id="spinner" style="position: absolute; top: 50%; width: 100%">
+      <div class="spinner">Loading...</div>
+  	</center>
     <!-- canvas required by the Slint runtime -->
     <canvas id="canvas"></canvas>
     <script type="module">
       // import the generated file.
       import init from './slint_game.js';
-      init();
+      init().finally(() => {
+        document.getElementById("spinner").remove();
+      });
     </script>
   </body>
 </html>
